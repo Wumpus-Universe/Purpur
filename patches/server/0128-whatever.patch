@@ -1,0 +1,25 @@
+From 6a209544c90c9adf224555cf6d35c1a457daa729 Mon Sep 17 00:00:00 2001
+From: Thrasilias <46424920+TRose2000@users.noreply.github.com>
+Date: Mon, 8 Jun 2020 22:10:14 +0200
+Subject: [PATCH] whatever
+
+---
+ src/main/java/net/pl3x/purpur/command/PurpurCommand.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/net/pl3x/purpur/command/PurpurCommand.java b/src/main/java/net/pl3x/purpur/command/PurpurCommand.java
+index e2a36197..c433f5b1 100644
+--- a/src/main/java/net/pl3x/purpur/command/PurpurCommand.java
++++ b/src/main/java/net/pl3x/purpur/command/PurpurCommand.java
+@@ -45,7 +45,7 @@ public class PurpurCommand extends Command {
+         if (args[0].equalsIgnoreCase("version")) {
+             Command verCmd = org.bukkit.Bukkit.getServer().getCommandMap().getCommand("version");
+             if (verCmd != null) {
+-                return verCmd.execute(sender, commandLabel, new String[0]);
++                return verCmd.execute(sender, commandLabel, new String[0]);//whatever
+             }
+         }
+ 
+-- 
+2.26.0.windows.1
+

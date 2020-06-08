@@ -1,0 +1,58 @@
+From 7a3a2bdbc2d771fcac6ec3514200fd32c1ae8843 Mon Sep 17 00:00:00 2001
+From: Thrasilias <46424920+TRose2000@users.noreply.github.com>
+Date: Mon, 8 Jun 2020 21:58:11 +0200
+Subject: [PATCH] remove_reload_command
+
+---
+ .../pl3x/purpur/command/PurpurCommand.java    | 22 +++----------------
+ 1 file changed, 3 insertions(+), 19 deletions(-)
+
+diff --git a/src/main/java/net/pl3x/purpur/command/PurpurCommand.java b/src/main/java/net/pl3x/purpur/command/PurpurCommand.java
+index 36260e0e..e2a36197 100644
+--- a/src/main/java/net/pl3x/purpur/command/PurpurCommand.java
++++ b/src/main/java/net/pl3x/purpur/command/PurpurCommand.java
+@@ -19,14 +19,14 @@ public class PurpurCommand extends Command {
+     public PurpurCommand(String name) {
+         super(name);
+         this.description = "Purpur related commands";
+-        this.usageMessage = "/purpur [reload | version]";
++        this.usageMessage = "/purpur [version]";
+         this.setPermission("bukkit.command.purpur");
+     }
+ 
+     @Override
+     public List<String> tabComplete(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
+         if (args.length == 1) {
+-            return Stream.of("reload", "version")
++            return Stream.of("version")
+                     .filter(arg -> arg.startsWith(args[0].toLowerCase()))
+                     .collect(Collectors.toList());
+         }
+@@ -42,23 +42,7 @@ public class PurpurCommand extends Command {
+             return false;
+         }
+ 
+-        if (args[0].equalsIgnoreCase("reload")) {
+-            Command.broadcastCommandMessage(sender, ChatColor.RED + "Please note that this command is not supported and may cause issues.");
+-            Command.broadcastCommandMessage(sender, ChatColor.RED + "If you encounter any issues please use the /stop command to restart your server.");
+-
+-            LocaleLanguage.reload(LocaleLanguage.getInstance());
+-
+-            MinecraftServer console = MinecraftServer.getServer();
+-            PurpurConfig.init((File) console.options.valueOf("purpur-settings"));
+-            for (WorldServer world : console.getWorlds()) {
+-                world.purpurConfig.init();
+-            }
+-            console.server.reloadCount++;
+-
+-            Command.broadcastCommandMessage(sender, ChatColor.GREEN + "Purpur config reload complete.");
+-        }
+-
+-        else if (args[0].equalsIgnoreCase("version")) {
++        if (args[0].equalsIgnoreCase("version")) {
+             Command verCmd = org.bukkit.Bukkit.getServer().getCommandMap().getCommand("version");
+             if (verCmd != null) {
+                 return verCmd.execute(sender, commandLabel, new String[0]);
+-- 
+2.26.0.windows.1
+
